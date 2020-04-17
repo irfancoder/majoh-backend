@@ -4,7 +4,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
 const VendorItem = ({ vendor }) => {
-  // console.log(vendor);
   return (
     <Link
       to={{

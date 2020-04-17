@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import { FirebaseAppProvider } from "reactfire";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { isUserLoggedIn } from "./utils";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import VendorDashboard from "./pages/VendorDashboard";
+import Firebase from "./firebase";
 
 var firebaseConfig = {
   apiKey: "AIzaSyD0rkPJ6JfDKlHDaKhnzSogAJQk-0y47Mk",
@@ -17,13 +25,41 @@ var firebaseConfig = {
 };
 
 const App = () => {
+  const [user, setUser] = useState(isUserLoggedIn());
+
+  useEffect(() => {
+    console.log(user);
+    if (user === null) {
+      Firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          setUser(user);
+        }
+      });
+    }
+  });
+
+  function PrivateRoute({ component: Component, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          user ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          )
+        }
+      />
+    );
+  }
+
   return (
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <Layout>
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/:id" component={VendorDashboard} />
+            <PrivateRoute path="/dashboard" component={VendorDashboard} />
           </Switch>
         </Router>
       </Layout>

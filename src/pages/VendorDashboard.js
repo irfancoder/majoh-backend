@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import VendorInfo from "../components/VENDOR/VendorInfo";
 import MenuDisplay from "../components/VENDOR/MENU/MenuDisplay";
 import MenuUpload from "../components/VENDOR/MENU/MenuUpload";
@@ -10,6 +11,7 @@ const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
+  max-width: ;
 `;
 
 const Header = styled.div`
@@ -17,20 +19,20 @@ const Header = styled.div`
   padding-bottom: 2em;
 `;
 
-const Dashboard = (props) => {
-  console.log(props.location.state);
+const Dashboard = () => {
+  // console.log(props.location.state);
 
   return (
     <Layout>
       <Header>
         <Link to="/">Back</Link>
       </Header>
-
+      test
       <Container>
-        <VendorInfo vendor={props.location.state.vendor} />
-        <MenuDisplay vendor={props.location.state.vendor} />
+        {/* <VendorInfo vendor={props.location.state.vendor} />
+        <MenuDisplay vendor={props.location.state.vendor} /> */}
       </Container>
-      <MenuUpload vendor={props.location.state.vendor} />
+      {/* <MenuUpload vendor={props.location.state.vendor} /> */}
     </Layout>
   );
 };
