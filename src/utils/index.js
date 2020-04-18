@@ -16,3 +16,30 @@ export function generateUUID() {
     return v.toString(16);
   });
 }
+
+export function getLocations() {
+  const location = [
+    "Piasau",
+    "Krokop",
+    "Pujut",
+    "Padang Kerbau",
+    "Town (Bandar Miri)",
+    "Senadin",
+    "Permyjaya",
+    "Tudan",
+    "Vista",
+    "Lutong",
+    "Lambir",
+    "Taman Tunku",
+    "Lopeng",
+    "Morsjaya",
+    "Hospital",
+    "Riam",
+    "Airport",
+    "Bumiko",
+    "Tanjong",
+    "Bekenu",
+    "Sibuti",
+  ];
+  return location;
+}

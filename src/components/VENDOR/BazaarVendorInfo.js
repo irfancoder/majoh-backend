@@ -8,10 +8,14 @@ import {
   Button,
   Grid,
   Avatar,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@material-ui/core";
 import Firebase from "firebase";
 import instance from "../../firebase";
-import { isUserLoggedIn } from "../../utils";
+import { isUserLoggedIn, getLocations } from "../../utils";
 import Profile from "./Profile";
 const db = Firebase.firestore(instance);
 
@@ -21,7 +25,7 @@ const Info = ({ vendor }) => {
     ownerName: vendor.ownerName || "",
     phoneNumber: vendor.phoneNumber || "",
     email: vendor.email || "",
-    address: vendor.address || "",
+    location: vendor.location || "",
     uid: isUserLoggedIn().uid,
     profile: vendor.profile || "",
   });
@@ -114,7 +118,22 @@ const Info = ({ vendor }) => {
             defaultValue={vendorInfo.email}
             variant="outlined"
           />
-          <TextField
+          <FormControl variant="outlined" style={{ width: "100%" }}>
+            <InputLabel htmlFor="filled-age-native-simple">Location</InputLabel>
+            <Select
+              name="location"
+              margin="normal"
+              value={vendorInfo.location}
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+            >
+              {getLocations().map((item) => {
+                return <MenuItem value={item}>{item}</MenuItem>;
+              })}
+            </Select>
+          </FormControl>
+          {/* <TextField
             name="address"
             label="Pickup Address"
             placeholder="Lot "
@@ -126,7 +145,7 @@ const Info = ({ vendor }) => {
             }}
             defaultValue={vendorInfo.address}
             variant="outlined"
-          />
+          /> */}
         </Grid>
         <Grid
           style={{
