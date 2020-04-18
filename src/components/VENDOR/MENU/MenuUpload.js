@@ -83,6 +83,15 @@ class DropzoneAreaExample extends Component {
                 Click on the URL to copy, and paste inside the menu
                 <br />
                 <br />
+                Cara Memuat Naik Gambar
+                <br />
+                (1) Pilih atau letakkan gambar ke dalam kotak dibawah
+                <br />
+                (2) Tekan 'Upload' untuk memuat naik gambar <br />
+                (3) URL akan dijana selepas gambar telah dimuat naik. Hanya klik
+                pada URL untuk copy-paste ke dalam menu.
+                <br />
+                <br />
                 URL: {this.state.url}
                 <br />
               </Typography>

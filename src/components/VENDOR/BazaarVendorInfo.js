@@ -65,11 +65,14 @@ const Info = ({ vendor }) => {
       <Typography style={{ alignSelf: "flex-start" }} variant="h6">
         Vendor Info
       </Typography>
+      <Typography style={{ alignSelf: "flex-start" }} variant="body2">
+        Sila isikan butiran bisnes anda.
+      </Typography>
       <Grid container>
         <Grid item md={6}>
           <TextField
             name="businessName"
-            label="Business name"
+            label="Nama Bisnes"
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -81,7 +84,7 @@ const Info = ({ vendor }) => {
           />
           <TextField
             name="ownerName"
-            label="Name"
+            label="Nama"
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -93,8 +96,8 @@ const Info = ({ vendor }) => {
           />
           <TextField
             name="phoneNumber"
-            label="Phone number"
-            placeholder="+60"
+            label="Nombor Whatsapp"
+            placeholder="Utk terima pesanan makanan"
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -119,7 +122,9 @@ const Info = ({ vendor }) => {
             variant="outlined"
           />
           <FormControl variant="outlined" style={{ width: "100%" }}>
-            <InputLabel htmlFor="filled-age-native-simple">Location</InputLabel>
+            <InputLabel htmlFor="filled-age-native-simple">
+              Kawasan Perniagaan
+            </InputLabel>
             <Select
               name="location"
               margin="normal"

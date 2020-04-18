@@ -57,13 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function a11yProps(index) {
-//   return {
-//     id: `vertical-tab-${index}`,
-//     "aria-controls": `vertical-tabpanel-${index}`,
-//   };
-// }
-
 const Dashboard = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -115,7 +108,13 @@ const Dashboard = () => {
           <Help />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Typography>You will log out of your account. Continue?</Typography>
+          <Typography style={{ marginTop: "1em" }}>
+            You will log out of your account. Continue?
+          </Typography>
+
+          <Typography style={{ marginBottom: "1em" }}>
+            Anda akan keluar dari akaun anda. Teruskan?
+          </Typography>
 
           <Button
             className={classes.logout}
@@ -132,10 +131,6 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <Header>
-        <Link to="/">Back</Link>
-      </Header>
-
       <SuspenseWithPerf
         fallback={<p>opening the shop...</p>}
         traceId={"load-burrito-status"}

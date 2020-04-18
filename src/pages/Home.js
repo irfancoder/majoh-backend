@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import VendorList from "../components/VENDOR/VendorList";
 import {
   Typography,
   Card,
@@ -112,7 +111,7 @@ const Home = () => {
     <Layout>
       <Container>
         <Typography style={{ marginBottom: "2em" }} variant="h6">
-          MajohVendors
+          MajohVendor
         </Typography>
         <Card style={{ marginBottom: "2em" }}>
           <CardContent>
@@ -163,9 +162,9 @@ const Home = () => {
           target="_blank"
           href="https://forms.gle/ZXLix3GdqokNBd8Q9"
         >
-          Register as vendor
+          Daftar sebagai vendor
         </a>
-        <Link to="forgotpassword">Forgot your password</Link>
+        <Link to="forgotpassword">Terlupa password</Link>
       </Container>
     </Layout>
   );

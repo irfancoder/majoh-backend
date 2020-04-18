@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  TextField,
-  Typography,
-  CardActions,
-  Button,
-  Grid,
-} from "@material-ui/core";
+import { TextField, Typography, Button, Grid } from "@material-ui/core";
 import Firebase from "firebase";
 import instance from "../../firebase";
 import { isUserLoggedIn } from "../../utils";
@@ -50,7 +44,7 @@ const Info = ({ vendor }) => {
         <Typography variant="h6">Vendor Info</Typography>
         <TextField
           name="businessName"
-          label="Business name"
+          label="Nama Bisnes"
           fullWidth
           disabled
           margin="normal"
@@ -63,7 +57,7 @@ const Info = ({ vendor }) => {
         />
         <TextField
           name="ownerName"
-          label="Name"
+          label="Nama"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -75,8 +69,8 @@ const Info = ({ vendor }) => {
         />
         <TextField
           name="phoneNumber"
-          label="Phone number"
-          placeholder="+60"
+          label="Nombor Whatsapp"
+          placeholder="Utk terima pesanan makanan"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -89,7 +83,7 @@ const Info = ({ vendor }) => {
         <TextField
           name="email"
           label="Email"
-          placeholder="+60"
+          placeholder="name@example.com"
           fullWidth
           onChange={handleChange}
           margin="normal"

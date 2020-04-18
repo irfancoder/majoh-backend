@@ -14,16 +14,16 @@ import instance from "../../firebase";
 
 const contact = [
   {
-    purpose: "Vendor Support",
-    name: "",
-    email: "",
-    phone: "",
+    purpose: "Pertolongan Vendor",
+    name: "En. Irfan Ismail",
+    email: "irfan@founders.my",
+    phone: "+6013-688 7507",
   },
   {
-    purpose: "Management",
-    name: "Hamzah Hamizan",
+    purpose: "Pihak Management Majoh ",
+    name: "En. Hamzah Hamizan",
     email: "hamzah@founders.my",
-    phone: "",
+    phone: "+6011-1010 1809",
   },
 ];
 

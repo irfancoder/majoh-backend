@@ -9,10 +9,10 @@ const db = Firebase.firestore(instance);
 const MenuTable = ({ vendor, dataMenu }) => {
   const [state, setState] = React.useState({
     columns: [
-      { title: "Item", field: "item" },
-      { title: "Desc", field: "description" },
+      { title: "Brg Jual", field: "item" },
+      { title: "Info Lebih", field: "description" },
       {
-        title: "Price (RM)",
+        title: "Harga (RM)",
         field: "price",
         render: (rowData) => <p>RM {rowData.price}</p>,
       },
