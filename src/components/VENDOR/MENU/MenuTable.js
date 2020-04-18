@@ -2,6 +2,7 @@ import React from "react";
 import MaterialTable from "material-table";
 import Firebase from "firebase";
 import instance from "../../../firebase";
+import { generateUUID } from "../../../utils";
 
 const db = Firebase.firestore(instance);
 
@@ -30,12 +31,27 @@ const MenuTable = ({ vendor, dataMenu }) => {
     data: dataMenu,
   });
 
+  const addDatabase = (data) => {
+    let passedData = data;
+    passedData.vendor = vendor;
+    passedData.uid = generateUUID();
+    db.collection("bazaar_menu")
+      .doc(passedData.uid)
+      .set(passedData)
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
+  };
+
   const updateDatabase = (data) => {
-    db.collection("bazaar_vendors")
-      .doc(vendor.uid)
-      .collection("menu")
-      .doc(data.item)
-      .set(data)
+    let passedData = data;
+    passedData.vendor = vendor;
+    db.collection("bazaar_menu")
+      .doc(passedData.uid)
+      .set(passedData)
       .then(function () {
         console.log("Document successfully written!");
       })
@@ -63,7 +79,7 @@ const MenuTable = ({ vendor, dataMenu }) => {
                 data.push(newData);
                 return { ...prevState, data };
               });
-              updateDatabase(newData);
+              addDatabase(newData);
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
@@ -90,10 +106,8 @@ const MenuTable = ({ vendor, dataMenu }) => {
                 return { ...prevState, data };
               });
 
-              db.collection("bazaar_vendors")
-                .doc(vendor.uid)
-                .collection("menu")
-                .doc(oldData.item)
+              db.collection("bazaar_menu")
+                .doc(oldData.uid)
                 .delete()
                 .then(function () {
                   console.log("Document successfully deleted!");

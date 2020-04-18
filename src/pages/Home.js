@@ -114,7 +114,7 @@ const Home = () => {
         <Typography style={{ marginBottom: "2em" }} variant="h6">
           MajohVendors
         </Typography>
-        <Card>
+        <Card style={{ marginBottom: "2em" }}>
           <CardContent>
             <Typography
               style={{ marginBottom: "1em", textAlign: "start" }}
@@ -158,7 +158,11 @@ const Home = () => {
             <Button onClick={handleSubmit}>login</Button>
           </CardActions>
         </Card>
-        <a style={{ marginRight: "1em" }} target="_blank" href="#">
+        <a
+          style={{ marginRight: "1em" }}
+          target="_blank"
+          href="https://forms.gle/ZXLix3GdqokNBd8Q9"
+        >
           Register as vendor
         </a>
         <Link to="forgotpassword">Forgot your password</Link>

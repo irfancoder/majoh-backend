@@ -8,7 +8,6 @@ import {
   Switch,
   Route,
   Redirect,
-  withRouter,
 } from "react-router-dom";
 import VendorDashboard from "./pages/VendorDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
