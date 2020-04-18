@@ -9,21 +9,30 @@ const MenuTable = ({ vendor, dataMenu }) => {
   const [state, setState] = React.useState({
     columns: [
       { title: "Item", field: "item" },
-      { title: "Type", field: "type" },
       { title: "Desc", field: "description" },
       {
         title: "Price (RM)",
         field: "price",
-        type: "currency",
+        render: (rowData) => <p>RM {rowData.price}</p>,
       },
-      { title: "Thumbnail", field: "thumbnail" },
+      {
+        title: "Image URL",
+        field: "thumbnail",
+        render: (rowData) => (
+          <img
+            src={rowData.thumbnail}
+            alt={rowData.item}
+            style={{ width: 50, borderRadius: "50%" }}
+          />
+        ),
+      },
     ],
     data: dataMenu,
   });
 
   const updateDatabase = (data) => {
-    db.collection("vendor")
-      .doc(vendor.id)
+    db.collection("bazaar_vendors")
+      .doc(vendor.uid)
       .collection("menu")
       .doc(data.item)
       .set(data)
@@ -37,10 +46,13 @@ const MenuTable = ({ vendor, dataMenu }) => {
 
   return (
     <MaterialTable
-      style={{ marginLeft: "1em", marginRight: "1em" }}
+      style={{ paddingLeft: "1em", paddingRight: "1em" }}
       title="Menu"
       columns={state.columns}
       data={state.data}
+      options={{
+        actionsColumnIndex: -1,
+      }}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {
@@ -78,8 +90,8 @@ const MenuTable = ({ vendor, dataMenu }) => {
                 return { ...prevState, data };
               });
 
-              db.collection("vendor")
-                .doc(vendor.id)
+              db.collection("bazaar_vendors")
+                .doc(vendor.uid)
                 .collection("menu")
                 .doc(oldData.item)
                 .delete()

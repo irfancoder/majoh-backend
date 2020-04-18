@@ -15,9 +15,10 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import dimensions from "../styles/dimensions";
-import Firebase from "../firebase";
+import Firebase from "firebase";
 import { isUserLoggedIn } from "../utils";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+import instance from "../firebase";
 
 const Container = styled.div`
   width: 100%;
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
 }));
+
+const db = Firebase.firestore(instance);
 
 const Home = () => {
   const classes = useStyles();
@@ -68,8 +71,28 @@ const Home = () => {
     //SignIn Firebase function
     Firebase.auth()
       .signInWithEmailAndPassword(login.email, login.password)
-      .then(() => {
-        alert("logged in");
+      .then((result) => {
+        const user = {
+          email: result.user.email,
+          uid: result.user.uid,
+        };
+
+        db.collection("bazaar_vendors")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (!doc.exists) {
+              db.collection("bazaar_vendors")
+                .doc(user.uid)
+                .set(user)
+                .then(function () {
+                  console.log("Document successfully written!");
+                })
+                .catch(function (error) {
+                  console.error("Error writing document: ", error);
+                });
+            }
+          });
       })
       .catch(function (error) {
         // Handle Errors here.
@@ -135,8 +158,10 @@ const Home = () => {
             <Button onClick={handleSubmit}>login</Button>
           </CardActions>
         </Card>
-
-        {/* <VendorList /> */}
+        <a style={{ marginRight: "1em" }} target="_blank" href="#">
+          Register as vendor
+        </a>
+        <Link to="forgotpassword">Forgot your password</Link>
       </Container>
     </Layout>
   );

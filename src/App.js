@@ -11,6 +11,7 @@ import {
   withRouter,
 } from "react-router-dom";
 import VendorDashboard from "./pages/VendorDashboard";
+import ForgotPassword from "./pages/ForgotPassword";
 import Firebase from "./firebase";
 
 var firebaseConfig = {
@@ -28,7 +29,7 @@ const App = () => {
   const [user, setUser] = useState(isUserLoggedIn());
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     if (user === null) {
       Firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -59,6 +60,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/forgotpassword" component={ForgotPassword} />
             <PrivateRoute path="/dashboard" component={VendorDashboard} />
           </Switch>
         </Router>

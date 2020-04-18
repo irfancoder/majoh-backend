@@ -11,8 +11,8 @@ const MenuDisplay = ({ vendor }) => {
   const Menu = () => {
     // lazy load the Firestore SDK and create a document reference
     const menuRef = useFirestore()
-      .collection("vendor")
-      .doc(vendor.id)
+      .collection("bazaar_vendors")
+      .doc(vendor.uid)
       .collection("menu");
 
     // subscribe to the doc. just one line!
