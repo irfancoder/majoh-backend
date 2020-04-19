@@ -9,16 +9,24 @@ const db = Firebase.firestore(instance);
 const MenuTable = ({ vendor, dataMenu }) => {
   const [state, setState] = React.useState({
     columns: [
-      { title: "Brg Jual", field: "item" },
-      { title: "Info Lebih", field: "description" },
+      {
+        title: "Brg Jual",
+        field: "item",
+      },
+      {
+        title: "Info Lebih",
+        field: "description",
+      },
       {
         title: "Harga (RM)",
         field: "price",
+
         render: (rowData) => <p>RM {rowData.price}</p>,
       },
       {
         title: "Image URL",
         field: "thumbnail",
+
         render: (rowData) => (
           <img
             src={rowData.thumbnail}
@@ -71,7 +79,17 @@ const MenuTable = ({ vendor, dataMenu }) => {
       }}
       editable={{
         onRowAdd: (newData) =>
-          new Promise((resolve) => {
+          new Promise((resolve, reject) => {
+            // state.columns.forEach(item => {
+            //   if(item.field)
+            // })
+            // Object.keys(newData).map((key) => {
+            //   if (newData[key] === state.columns.field) {
+            //     reject("Missing data");
+            //     alert("missing data");
+            //   }
+            // });
+
             setTimeout(() => {
               resolve();
               setState((prevState) => {

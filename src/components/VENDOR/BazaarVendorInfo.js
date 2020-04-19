@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import {
   TextField,
-  Card,
+  ListSubheader,
   Typography,
-  CardActions,
   Button,
   Grid,
   Avatar,
@@ -52,6 +51,32 @@ const Info = ({ vendor }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     updateDatabase();
+  };
+
+  const getAllLocations = () => {
+    let finalList = [];
+    Object.keys(getLocations()).map((key, index) => {
+      let header = <ListSubheader key={index}>{key}</ListSubheader>;
+      finalList.push(header);
+      getLocations()[key].map((item) => {
+        return finalList.push(
+          <MenuItem value={item} key={item}>
+            {item}
+          </MenuItem>
+        );
+      });
+    });
+    return (
+      <Select
+        name="location"
+        value={vendorInfo.location}
+        onChange={handleChange}
+        defaultValue="Pilih lokasi"
+      >
+        <MenuItem value="">Pilih lokasi</MenuItem>
+        {finalList}
+      </Select>
+    );
   };
 
   return (
@@ -125,7 +150,8 @@ const Info = ({ vendor }) => {
             <InputLabel htmlFor="filled-age-native-simple">
               Kawasan Perniagaan
             </InputLabel>
-            <Select
+            {getAllLocations()}
+            {/* <Select
               name="location"
               margin="normal"
               value={vendorInfo.location}
@@ -136,21 +162,8 @@ const Info = ({ vendor }) => {
               {getLocations().map((item) => {
                 return <MenuItem value={item}>{item}</MenuItem>;
               })}
-            </Select>
+            </Select> */}
           </FormControl>
-          {/* <TextField
-            name="address"
-            label="Pickup Address"
-            placeholder="Lot "
-            fullWidth
-            onChange={handleChange}
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            defaultValue={vendorInfo.address}
-            variant="outlined"
-          /> */}
         </Grid>
         <Grid
           style={{
