@@ -121,8 +121,8 @@ const Info = ({ vendor }) => {
           />
           <TextField
             name="phoneNumber"
-            label="Nombor Whatsapp"
-            placeholder="Utk terima pesanan makanan"
+            label="Nombor Whatsapp "
+            placeholder="Utk terima pesanan makanan. Letak '+60' di hadapan"
             fullWidth
             margin="normal"
             InputLabelProps={{
