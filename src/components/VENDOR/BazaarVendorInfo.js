@@ -22,7 +22,7 @@ const Info = ({ vendor }) => {
   const [vendorInfo, setVendorInfo] = useState({
     businessName: vendor.businessName || "",
     ownerName: vendor.ownerName || "",
-    phoneNumber: vendor.phoneNumber || "",
+    telegramId: vendor.telegramId || "",
     email: vendor.email || "",
     location: vendor.location || "",
     uid: isUserLoggedIn().uid,
@@ -120,16 +120,16 @@ const Info = ({ vendor }) => {
             onChange={handleChange}
           />
           <TextField
-            name="phoneNumber"
-            label="Nombor Whatsapp "
-            placeholder="Utk terima pesanan makanan. Letak '+60' di hadapan"
-            fullWidth
+            name="telegramId"
+            label="Telegram ID "
+            placeholder="Utk terima pesanan makanan. Pihak kami akn isikan slps anda masuk dlm Telegram"
+            disabled
             margin="normal"
             InputLabelProps={{
               shrink: true,
             }}
             onChange={handleChange}
-            defaultValue={vendorInfo.phoneNumber}
+            defaultValue={vendorInfo.telegramId}
             variant="outlined"
           />
           <TextField
