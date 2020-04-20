@@ -124,6 +124,7 @@ const Info = ({ vendor }) => {
             label="Telegram ID "
             placeholder="Utk terima pesanan makanan. Pihak kami akn isikan slps anda masuk dlm Telegram"
             disabled
+            fullWidth
             margin="normal"
             InputLabelProps={{
               shrink: true,
@@ -184,7 +185,9 @@ const Info = ({ vendor }) => {
           <Profile vendor={vendor} saveProfile={saveProfile} />
         </Grid>
       </Grid>
-      <Button onClick={onSubmit}>Save</Button>
+      <Button variant="contained" color="primary" onClick={onSubmit}>
+        Save
+      </Button>
     </div>
   );
 };

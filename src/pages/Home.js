@@ -160,7 +160,8 @@ const Home = () => {
         <a
           style={{ marginRight: "1em" }}
           target="_blank"
-          href="https://forms.gle/ZXLix3GdqokNBd8Q9"
+          rel="noopener noreferrer"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeO4v4noT2u7GbPzQBVvEcvT987EXFt9ZPkCkWtcH_KB4kaYw/viewform"
         >
           Daftar sebagai vendor
         </a>
