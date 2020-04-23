@@ -139,8 +139,7 @@ const Info = ({ vendor }) => {
           <TextField
             name="telegramId"
             label="Telegram ID "
-            placeholder="Utk terima pesanan makanan. Pihak kami akn isikan slps anda masuk dlm Telegram"
-            disabled
+            placeholder="Taip /id dalam Telegram majohbot u"
             fullWidth
             margin="normal"
             InputLabelProps={{
