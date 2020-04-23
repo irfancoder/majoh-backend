@@ -74,6 +74,8 @@ const Home = () => {
         const user = {
           email: result.user.email,
           uid: result.user.uid,
+          start: new Date("2014-08-18T15:00:00"),
+          end: new Date("2014-08-18T18:00:00"),
         };
 
         db.collection("bazaar_vendors")
@@ -161,7 +163,7 @@ const Home = () => {
           style={{ marginRight: "1em" }}
           target="_blank"
           rel="noopener noreferrer"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSeO4v4noT2u7GbPzQBVvEcvT987EXFt9ZPkCkWtcH_KB4kaYw/viewform"
+          href="https://majoh.com.my/register-vendor"
         >
           Daftar sebagai vendor
         </a>

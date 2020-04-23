@@ -12,6 +12,13 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
+
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+} from "@material-ui/pickers";
+
+import DateFnsUtils from "@date-io/date-fns";
 import Firebase from "firebase";
 import instance from "../../firebase";
 import { isUserLoggedIn, getLocations } from "../../utils";
@@ -27,10 +34,20 @@ const Info = ({ vendor }) => {
     location: vendor.location || "",
     uid: isUserLoggedIn().uid,
     profile: vendor.profile || "",
+    start: vendor.start.toDate() || new Date("2014-08-18T15:00:00"),
+    end: vendor.end.toDate() || new Date("2014-08-18T18:00:00"),
   });
 
   const handleChange = (event) => {
     setVendorInfo({ ...vendorInfo, [event.target.name]: event.target.value });
+  };
+
+  const handleStartTime = (time) => {
+    console.log(time);
+    setVendorInfo({ ...vendorInfo, start: time });
+  };
+  const handleEndTime = (time) => {
+    setVendorInfo({ ...vendorInfo, end: time });
   };
   const saveProfile = (file) => {
     setVendorInfo({ ...vendorInfo, profile: file });
@@ -147,30 +164,48 @@ const Info = ({ vendor }) => {
             defaultValue={vendorInfo.email}
             variant="outlined"
           />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "1em",
+              }}
+            >
+              <KeyboardTimePicker
+                margin="normal"
+                id="start"
+                label="Masa Mula Delivery"
+                value={vendorInfo.start}
+                onChange={handleStartTime}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+              <KeyboardTimePicker
+                margin="normal"
+                id="end"
+                label="Masa Tamat Delivery"
+                value={vendorInfo.end}
+                onChange={handleEndTime}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+            </div>
+          </MuiPickersUtilsProvider>
+
           <FormControl variant="outlined" style={{ width: "100%" }}>
             <InputLabel htmlFor="filled-age-native-simple">
               Kawasan Perniagaan
             </InputLabel>
             {getAllLocations()}
-            {/* <Select
-              name="location"
-              margin="normal"
-              value={vendorInfo.location}
-              onChange={handleChange}
-              displayEmpty
-              inputProps={{ "aria-label": "Without label" }}
-            >
-              {getLocations().map((item) => {
-                return <MenuItem value={item}>{item}</MenuItem>;
-              })}
-            </Select> */}
           </FormControl>
         </Grid>
         <Grid
           style={{
             display: "flex",
             flexDirection: "column",
-
             alignItems: "center",
           }}
           item

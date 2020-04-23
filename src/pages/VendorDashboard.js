@@ -6,6 +6,7 @@ import VendorInfo from "../components/VENDOR/BazaarVendorInfo";
 import MenuDisplay from "../components/VENDOR/MENU/MenuDisplay";
 import MenuUpload from "../components/VENDOR/MENU/MenuUpload";
 import Layout from "../components/Layout";
+import RunnerTable from "../components/RUNNER/RunnerTable";
 import Help from "../components/HELP/Help";
 import { Button, Tabs, Tab, Box, Typography } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
@@ -90,9 +91,15 @@ const Dashboard = () => {
     return (
       <Container className={classes.root}>
         <div>
-          <Tabs value={value} onChange={handleChange} className={classes.tabs}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            className={classes.tabs}
+            scrollButtons="auto"
+          >
             <Tab label="Vendor" />
             <Tab label="Menu" />
+            <Tab label="Runner" />
             <Tab label="Help" />
             <Tab label="Logout" />
           </Tabs>
@@ -105,9 +112,17 @@ const Dashboard = () => {
           <MenuUpload vendor={vendorData} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Help />
+          <RunnerTable
+            title="Miri"
+            url="https://airtable.com/embed/shrHxEffa08d16vt7?backgroundColor=yellow&viewControls=on"
+          />
+          <RunnerTable title="Kuching" />
+          <RunnerTable title="Bintulu" />
         </TabPanel>
         <TabPanel value={value} index={3}>
+          <Help />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
           <Typography style={{ marginTop: "1em" }}>
             You will log out of your account. Continue?
           </Typography>
