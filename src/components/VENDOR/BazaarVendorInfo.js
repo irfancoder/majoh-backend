@@ -23,7 +23,14 @@ import Firebase from "firebase";
 import instance from "../../firebase";
 import { isUserLoggedIn, getLocations } from "../../utils";
 import Profile from "./Profile";
+import MuiAlert from "@material-ui/lab/Alert";
+import { Snackbar } from "@material-ui/core";
+
 const db = Firebase.firestore(instance);
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const Info = ({ vendor }) => {
   const [vendorInfo, setVendorInfo] = useState({
@@ -34,9 +41,20 @@ const Info = ({ vendor }) => {
     location: vendor.location || "",
     uid: isUserLoggedIn().uid,
     profile: vendor.profile || "",
-    start: vendor.start.toDate() || new Date("2014-08-18T15:00:00"),
-    end: vendor.end.toDate() || new Date("2014-08-18T18:00:00"),
+    start: vendor.start
+      ? vendor.start.toDate()
+      : new Date("2014-08-18T15:00:00"),
+    end: vendor.end ? vendor.end.toDate() : new Date("2014-08-18T18:00:00"),
   });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleChange = (event) => {
     setVendorInfo({ ...vendorInfo, [event.target.name]: event.target.value });
@@ -59,6 +77,7 @@ const Info = ({ vendor }) => {
       .update(vendorInfo)
       .then(function () {
         console.log("Document successfully written!");
+        setOpen(true);
       })
       .catch(function (error) {
         console.error("Error writing document: ", error);
@@ -139,7 +158,7 @@ const Info = ({ vendor }) => {
           <TextField
             name="telegramId"
             label="Telegram ID "
-            placeholder="Taip /id dalam Telegram majohbot u"
+            placeholder="Taip /id dalam Telegram majohbot"
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -222,6 +241,11 @@ const Info = ({ vendor }) => {
       <Button variant="contained" color="primary" onClick={onSubmit}>
         Save
       </Button>
+      <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Account info saved!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

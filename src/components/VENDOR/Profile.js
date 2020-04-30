@@ -5,7 +5,6 @@ import Firebase from "firebase";
 import instance from "../../firebase";
 
 const db = Firebase.firestore(instance);
-
 const storage = Firebase.storage();
 
 export default class Profile extends Component {
