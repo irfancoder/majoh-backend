@@ -113,7 +113,7 @@ const Home = () => {
     <Layout>
       <Container>
         <Typography style={{ marginBottom: "2em" }} variant="h6">
-          MajohVendor
+          AgrobuzzVendor
         </Typography>
         <Card style={{ marginBottom: "2em" }}>
           <CardContent>

@@ -17,6 +17,15 @@ export function generateUUID() {
   });
 }
 
+export function getCategories(){
+  const categories = [
+    "Vegetable",
+    "Poultry & Meat",
+    "Fishery"
+  ]
+  return categories
+}
+
 export function getLocations() {
   const location = {
     MIRI: [

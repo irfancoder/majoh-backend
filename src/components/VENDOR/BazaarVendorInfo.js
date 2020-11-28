@@ -21,7 +21,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 import Firebase from "firebase";
 import instance from "../../firebase";
-import { isUserLoggedIn, getLocations } from "../../utils";
+import { isUserLoggedIn, getLocations, getCategories } from "../../utils";
 import Profile from "./Profile";
 import MuiAlert from "@material-ui/lab/Alert";
 import { Snackbar } from "@material-ui/core";
@@ -38,7 +38,11 @@ const Info = ({ vendor }) => {
     ownerName: vendor.ownerName || "",
     telegramId: vendor.telegramId || "",
     email: vendor.email || "",
+    landSize: vendor.landSize || "",
     location: vendor.location || "",
+    category: vendor.category || "",
+    yearEstablished: vendor.yearEstablished || "",
+    farmingTech: vendor.farmingTech || "",
     uid: isUserLoggedIn().uid,
     profile: vendor.profile || "",
     start: vendor.start
@@ -115,6 +119,27 @@ const Info = ({ vendor }) => {
     );
   };
 
+  const getAllCategories = () => {
+
+    return (
+      <Select
+        name="location"
+        value={vendorInfo.location}
+        onChange={handleChange}
+        defaultValue="Pilih kategori"
+      >
+        <MenuItem value="">Pilih kategori</MenuItem>
+        {getCategories().map((item) => {
+          return (<MenuItem value={item} key={item}>
+            {item}
+          </MenuItem>
+          )
+        })}
+      </Select>
+    );
+  }
+
+
   return (
     <div
       style={{
@@ -166,6 +191,54 @@ const Info = ({ vendor }) => {
             }}
             onChange={handleChange}
             defaultValue={vendorInfo.telegramId}
+            variant="outlined"
+          />
+          <FormControl variant="outlined" style={{ width: "100%" }}>
+            <InputLabel htmlFor="filled-age-native-simple">
+              Kategori
+            </InputLabel>
+            {getAllCategories()}
+          </FormControl>
+          <FormControl variant="outlined" style={{ width: "100%", marginTop: "1em" }}>
+            <TextField
+              id="yearEstablished"
+              label="Tahun Beroperasi"
+              type="date"
+              defaultValue="2017-05-24"
+              fullWidth
+              variant="outlined"
+              defaultValue={vendorInfo.yearEstablished}
+              onChange={handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </FormControl>
+
+          <TextField
+            name="landSize"
+            label="Keluasan tapak"
+            placeholder="2-10 acre"
+            fullWidth
+            onChange={handleChange}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={vendorInfo.landSize}
+            variant="outlined"
+          />
+           <TextField
+            name="farmingTech"
+            label="Teknik Pertanaman"
+            placeholder="Conventional, Fertigation, Hydroponics etc"
+            fullWidth
+            onChange={handleChange}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={vendorInfo.farmingTech}
             variant="outlined"
           />
           <TextField

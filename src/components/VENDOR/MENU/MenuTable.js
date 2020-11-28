@@ -10,23 +10,26 @@ const MenuTable = ({ vendor, dataMenu }) => {
   const [state, setState] = React.useState({
     columns: [
       {
-        title: "Brg Jual",
+        title: "Barang Jualan",
         field: "item",
       },
       {
-        title: "Info Lebih",
-        field: "description",
+        title: "Harga Min (RM)",
+        field: "price_min",
+        render: (rowData) => <p>RM {rowData.price_min || ""}</p>,
       },
       {
-        title: "Harga (RM)",
-        field: "price",
-
-        render: (rowData) => <p>RM {rowData.price}</p>,
+        title: "Harga Max (RM)",
+        field: "price_max",
+        render: (rowData) => <p>RM {rowData.price_max || ""}</p>,
+      },
+      {
+        title: "MOQ",
+        field: "moq",
       },
       {
         title: "Image URL",
         field: "thumbnail",
-
         render: (rowData) => (
           <img
             src={rowData.thumbnail}

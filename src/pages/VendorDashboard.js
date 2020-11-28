@@ -13,6 +13,7 @@ import { Link, Redirect } from "react-router-dom";
 import Firebase from "../firebase";
 import { useFirestoreDocData, useFirestore, SuspenseWithPerf } from "reactfire";
 import { isUserLoggedIn } from "../utils";
+import Statistics from "../components/STATISTICS/Statistics";
 
 const Container = styled.div`
   background-color: white;
@@ -100,6 +101,7 @@ const Dashboard = () => {
             <Tab label="Vendor" />
             <Tab label="Menu" />
             <Tab label="Runner" />
+            <Tab label="Statistics" />
             <Tab label="Help" />
             <Tab label="Logout" />
           </Tabs>
@@ -120,9 +122,12 @@ const Dashboard = () => {
           <RunnerTable title="Bintulu" />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Help />
+          <Statistics />
         </TabPanel>
         <TabPanel value={value} index={4}>
+          <Help />
+        </TabPanel>
+        <TabPanel value={value} index={5}>
           <Typography style={{ marginTop: "1em" }}>
             You will log out of your account. Continue?
           </Typography>
